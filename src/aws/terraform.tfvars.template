@@ -1,5 +1,25 @@
-name  = "my-aws-project"
-region = "us-east-1"
-tags = {
-  Environment = "Development"
+# General settings
+name   = "MyEC2Instance"
+region = "us-east-1" # The AWS region where your resources will be deployed
+
+# Compute settings
+ami_id             = "ami-12345678"  # The AMI ID for the EC2 instance
+instance_type      = "t2.micro"      # The instance type for the EC2 instance
+subnet_id          = "subnet-abc123" # The ID of the subnet where the EC2 instance will be launched
+security_group_ids = ["sg-12345678"] # List of security group IDs for the EC2 instance
+compute_tags = {
+  Name = "MyInstance" # Tag for the EC2 instance
+}
+
+# Network settings
+cidr_block        = "10.0.0.0/16" # CIDR block for the VPC
+subnet_cidr_block = "10.0.1.0/24" # CIDR block for the subnet
+availability_zone = "us-east-1a"  # Availability zone for the subnet
+
+# Storage settings
+bucket_name       = "my-s3-bucket-123" # Name for the S3 bucket
+versioning_status = "Enabled"          # Status of versioning for the S3 bucket ("Enabled" or "Suspended")
+storage_tags = {
+  Environment = "Dev"
+  Project     = "MyProject"
 }
