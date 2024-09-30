@@ -10,7 +10,7 @@ module "aws_compute" {
   ami_id             = var.ami_id
   instance_type      = var.instance_type
   region             = var.region
-  subnet_id          = var.subnet_id
+  subnet_id          = module.aws_network.subnet_id # Correct reference to subnet_id output
   security_group_ids = var.security_group_ids
   tags               = var.compute_tags
 }
