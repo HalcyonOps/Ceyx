@@ -1,4 +1,3 @@
-
 # **HalcyonWorks - Ceyx Terraform Modules**
 
 **Ceyx** is a cloud-agnostic Terraform module collection that simplifies the deployment of common infrastructure components across AWS, Azure, and GCP. The project aims to provide reusable and customizable modules for compute, network, and storage resources, supporting multi-cloud environments with a consistent interface.
@@ -7,50 +6,73 @@
 
 ```
 .
-├── LICENSE
-├── README.md
-├── generate-docs.md
-├── generate-docs.sh
 ├── modules
 │   ├── compute
 │   │   ├── aws
 │   │   │   ├── doc.md
 │   │   │   ├── main.tf
 │   │   │   ├── outputs.tf
+│   │   │   ├── providers.tf
 │   │   │   ├── variables.tf
 │   │   │   └── versions.tf
 │   │   ├── azure
 │   │   │   ├── doc.md
 │   │   │   ├── main.tf
 │   │   │   ├── outputs.tf
+│   │   │   ├── providers.tf
 │   │   │   ├── variables.tf
 │   │   │   └── versions.tf
 │   │   └── gcp
 │   │       ├── doc.md
 │   │       ├── main.tf
 │   │       ├── outputs.tf
+│   │       ├── providers.tf
 │   │       ├── variables.tf
 │   │       └── versions.tf
 │   ├── network
 │   │   ├── aws
 │   │   │   ├── doc.md
-│   │   │   └── main.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── providers.tf
+│   │   │   ├── variables.tf
+│   │   │   └── versions.tf
 │   │   ├── azure
 │   │   │   ├── doc.md
-│   │   │   └── main.tf
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   ├── providers.tf
+│   │   │   ├── variables.tf
+│   │   │   └── versions.tf
 │   │   └── gcp
 │   │       ├── doc.md
-│   │       └── main.tf
+│   │       ├── main.tf
+│   │       ├── outputs.tf
+│   │       ├── providers.tf
+│   │       ├── variables.tf
+│   │       └── versions.tf
 │   └── storage
 │       ├── aws
 │       │   ├── doc.md
-│       │   └── main.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── providers.tf
+│       │   ├── variables.tf
+│       │   └── versions.tf
 │       ├── azure
 │       │   ├── doc.md
-│       │   └── main.tf
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   ├── providers.tf
+│       │   ├── variables.tf
+│       │   └── versions.tf
 │       └── gcp
 │           ├── doc.md
-│           └── main.tf
+│           ├── main.tf
+│           ├── outputs.tf
+│           ├── providers.tf
+│           ├── variables.tf
+│           └── versions.tf
 └── src
     ├── aws
     │   ├── README.md
@@ -76,16 +98,19 @@
 ## **Modules Overview**
 
 ### **Compute Modules**
+
 - **AWS**: Provisions EC2 instances with customizable instance type, AMI, and network configurations.
 - **Azure**: Deploys Virtual Machines with support for different sizes and disk configurations.
 - **GCP**: Manages Compute Engine instances with options for machine types and networks.
 
 ### **Network Modules**
+
 - **AWS**: Creates VPCs, subnets, and route tables.
 - **Azure**: Deploys Virtual Networks and subnets.
 - **GCP**: Provisions VPC networks and subnets.
 
 ### **Storage Modules**
+
 - **AWS**: Manages S3 buckets with versioning and lifecycle configurations.
 - **Azure**: Creates Storage Accounts and Blob containers.
 - **GCP**: Configures Cloud Storage buckets with uniform access control.
@@ -93,18 +118,22 @@
 ## **Getting Started**
 
 ### **Prerequisites**
+
 - [Terraform](https://www.terraform.io/downloads.html) v1.0.0 or later.
 - Cloud provider accounts and appropriate credentials configured for AWS, Azure, and GCP.
 - [terraform-docs](https://terraform-docs.io/) for generating module documentation (optional).
 
 ### **Setup**
+
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/HalcyonWorks/Ceyx.git
    cd Ceyx
    ```
 
 2. Initialize the Terraform configuration:
+
    ```bash
    terraform init
    ```
@@ -121,6 +150,7 @@
 Each module can be used independently by specifying the module source path and providing the required variables.
 
 #### **Example: Using the AWS Compute Module**
+
 ```hcl
 module "aws_compute" {
   source = "../modules/compute/aws"
