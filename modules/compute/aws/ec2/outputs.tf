@@ -29,3 +29,8 @@ output "instance_key_name" {
   description = "The key name of the instance"
   value       = aws_instance.this.key_name
 }
+
+output "attached_ebs_volumes" {
+  description = "List of EBS volume IDs attached to the instance"
+  value       = [for attachment in aws_volume_attachment.additional_ebs_volumes : attachment.volume_id]
+}

@@ -60,7 +60,7 @@ module "security_group" {
 module "ec2" {
   source = "../../modules/compute/aws/ec2"
 
-  for_each = { for idx, instance in var.ec2_instances : idx => instance if length(var.ec2_instances) > 0 }
+  for_each = { for idx, instance in var.ec2_instances : idx => instance }
 
   ami                                  = each.value.ami_id
   instance_type                        = each.value.instance_type
@@ -77,6 +77,19 @@ module "ec2" {
   instance_initiated_shutdown_behavior = each.value.instance_initiated_shutdown_behavior
   user_data                            = each.value.user_data
   user_data_base64                     = each.value.user_data_base64
+
+  root_volume_type           = each.value.root_volume_type
+  root_volume_size           = each.value.root_volume_size
+  root_delete_on_termination = each.value.root_delete_on_termination
+  root_encrypted             = each.value.root_encrypted
+  root_iops                  = each.value.root_iops
+  root_kms_key_id            = each.value.root_kms_key_id
+  volume_tags                = each.value.volume_tags
+
+  ebs_block_devices = each.value.ebs_block_devices
+
+  # Pass additional volumes to be attached
+  additional_volumes = each.value.additional_volumes
 }
 
 # EKS Cluster Module

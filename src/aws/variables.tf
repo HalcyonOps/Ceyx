@@ -88,7 +88,6 @@ variable "security_groups" {
   default = []
 }
 
-# EC2 Instance Variables
 variable "ec2_instances" {
   description = "List of EC2 instance configurations"
   type = list(object({
@@ -96,17 +95,39 @@ variable "ec2_instances" {
     instance_type                        = string
     disable_api_termination              = bool
     monitoring                           = bool
-    key_name                             = string
+    key_name                             = optional(string, null)
     associate_public_ip_address          = bool
     availability_zone                    = string
     ebs_optimized                        = bool
-    iam_instance_profile                 = string
+    iam_instance_profile                 = optional(string, null)
     instance_initiated_shutdown_behavior = string
-    user_data                            = string
-    user_data_base64                     = string
-    ec2_tags                             = map(string)
+    user_data                            = optional(string, null)
+    user_data_base64                     = optional(string, null)
+    ec2_tags                             = optional(map(string), {})
+
+    # Root volume attributes
+    root_volume_type           = string
+    root_volume_size           = number
+    root_delete_on_termination = bool
+    root_encrypted             = bool
+    root_iops                  = optional(number, null)
+    root_kms_key_id            = optional(string, null)
+    volume_tags                = optional(map(string), {})
+
+    # EBS block device
+    ebs_block_devices = optional(list(object({
+      device_name           = string
+      volume_type           = string
+      volume_size           = number
+      delete_on_termination = bool
+      encrypted             = bool
+      iops                  = optional(number, null)
+      kms_key_id            = optional(string, null)
+    })), [])
+
+    # Additional volumes to attach (device_name -> volume_id)
+    additional_volumes = optional(map(string), {})
   }))
-  default = []
 }
 
 # EKS Cluster Variables

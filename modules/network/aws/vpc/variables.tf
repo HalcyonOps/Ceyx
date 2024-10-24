@@ -34,11 +34,11 @@ variable "assign_ipv6_cidr_block" {
 variable "ipv6_cidr_block" {
   description = "The IPv6 CIDR block for the VPC"
   type        = string
-  default     = null
+  default     = ""
 
   validation {
-    condition     = can(regex("^(([0-9a-fA-F]{1,4}:){1,7}([0-9a-fA-F]{1,4})?|::|([0-9a-fA-F]{1,4}:){1,6}:|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))/[0-9]{1,3}$", var.ipv6_cidr_block))
-    error_message = "The IPv6 CIDR block must be a valid IPv6 CIDR range."
+    condition     = var.assign_ipv6_cidr_block == false || can(regex("^(([0-9a-fA-F]{1,4}:){1,7}([0-9a-fA-F]{1,4})?|::|([0-9a-fA-F]{1,4}:){1,6}:|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,7}|:))/[0-9]{1,3}$", var.ipv6_cidr_block))
+    error_message = "The IPv6 CIDR block must be a valid IPv6 CIDR range if assign_ipv6_cidr_block is true."
   }
 }
 

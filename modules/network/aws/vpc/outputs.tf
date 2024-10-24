@@ -30,15 +30,15 @@ output "vpc_enable_dns_hostnames" {
 
 output "internet_gateway_id" {
   description = "The ID of the Internet Gateway"
-  value       = aws_internet_gateway.this[0].id
+  value       = length(aws_internet_gateway.this) > 0 ? aws_internet_gateway.this[0].id : null
 }
 
 output "nat_gateway_id" {
   description = "The ID of the NAT Gateway"
-  value       = aws_nat_gateway.this[0].id
+  value       = length(aws_nat_gateway.this) > 0 ? aws_nat_gateway.this[0].id : null
 }
 
 output "vpn_gateway_id" {
   description = "The ID of the VPN Gateway"
-  value       = aws_vpn_gateway.this[0].id
+  value       = length(aws_vpn_gateway.this) > 0 ? aws_vpn_gateway.this[0].id : null
 }

@@ -93,7 +93,6 @@ output "security_group_vpc_id" {
   value       = [for key, sg in module.security_group : sg.security_group_vpc_id]
 }
 
-# EC2 Instance Module Outputs
 output "ec2_instance_id" {
   description = "The ID of all EC2 instances"
   value       = [for key, ec2 in module.ec2 : ec2.instance_id]
@@ -107,6 +106,16 @@ output "ec2_instance_public_ip" {
 output "ec2_instance_private_ip" {
   description = "The private IP address of all EC2 instances"
   value       = [for key, ec2 in module.ec2 : try(ec2.private_ip, "N/A")]
+}
+
+output "ec2_root_volume_id" {
+  description = "The ID of root EBS volumes for all EC2 instances"
+  value       = [for key, ec2 in module.ec2 : try(ec2.root_volume_id, "N/A")]
+}
+
+output "ec2_ebs_volumes" {
+  description = "The list of EBS volumes attached to all EC2 instances"
+  value       = [for key, ec2 in module.ec2 : try(ec2.ebs_volumes, [])]
 }
 
 # EKS Cluster Module Outputs

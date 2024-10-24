@@ -1,3 +1,5 @@
+# modules/compute/aws/ec2/variables.tf
+
 variable "ami" {
   description = "The AMI ID to use for the instance"
   type        = string
@@ -164,3 +166,10 @@ variable "ebs_block_devices" {
   }))
   default = []
 }
+
+variable "additional_volumes" {
+  description = "Map of additional EBS volume IDs to attach to the instance with their respective device names"
+  type        = map(string)
+  default     = {}
+}
+
