@@ -1,6 +1,0 @@
-name               = "my-azure-project"
-region             = "East US"
-resource_group_name = "my-azure-resource-group"
-tags = {
-  Environment = "Development"
-}

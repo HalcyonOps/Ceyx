@@ -1,7 +1,0 @@
-name             = "my-gcp-project"
-region           = "us-central1"
-project_id       = "my-gcp-project-id"
-credentials_file = "~/.gcp/credentials.json"
-tags = {
-  Environment = "Development"
-}
